@@ -11,7 +11,7 @@ export const Location = ({ location, showLocationModal }) => {
 
   return (
     <div>
-      <h3>{stringManager.titleCase(location.properties.denominazi)}</h3> 
+      <h3>{stringManager.titleCase(location.properties.nome_scuol)}</h3> 
       
       <IonButton expand="block" fill="clear" color="transparent" onClick={() => showLocationModal({locationClicked:location})}>
         Info

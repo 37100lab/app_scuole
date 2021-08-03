@@ -12,7 +12,7 @@ import {
     IonNote
   } from '@ionic/react'
 
-  import { medkitOutline, leafOutline } from 'ionicons/icons'
+  import { medkitOutline, leafOutline, flagOutline, schoolOutline, golfOutline, storefrontOutline } from 'ionicons/icons'
   import stringManager from '../../utility/stringManager'
 
 const categoryConfig = {
@@ -24,6 +24,22 @@ farmacia: {
     icon: medkitOutline,
     color: 'danger',
 },
+bandierina: {
+    icon: flagOutline,
+    color: 'success',
+},
+scuola: {
+    icon: schoolOutline,
+    color: 'success',
+},
+negozio:{
+  icon:storefrontOutline,
+  color: 'success'
+},
+bandierina2:{
+  icon:golfOutline,
+  color: 'success'
+}
 }
 
 export const LocationModal = ({ loc }) => {
@@ -32,7 +48,7 @@ export const LocationModal = ({ loc }) => {
   if(
      (
       loc.properties &&
-      ( !('denominazi' in loc.properties) || !('indirizzo' in loc.properties)||!('quartiere' in loc.properties))
+      ( !('nome_scuol' in loc.properties) || !('indirizzo' in loc.properties)||!('quartiere' in loc.properties))
      )
      || !loc.properties
     )
@@ -48,11 +64,11 @@ export const LocationModal = ({ loc }) => {
       <IonToolbar>
             <IonItem>
               <IonTitle>
-                {stringManager.titleCase(loc.properties.denominazi)}
+                {stringManager.titleCase(loc.properties.nome_scuol)}
               </IonTitle>
                   <IonIcon
-                          color={ categoryConfig["farmacia"].color }
-                          icon={categoryConfig["farmacia"].icon}
+                          color={ categoryConfig["scuola"].color }
+                          icon={categoryConfig["scuola"].icon}
                           slot="end"
                       />
             </IonItem>
@@ -62,6 +78,18 @@ export const LocationModal = ({ loc }) => {
       <IonItem>
         <IonNote slot="start" color="primary">Indirizzo</IonNote>
         <IonLabel className="ion-text-wrap">{stringManager.titleCase(loc.properties.indirizzo)}</IonLabel>
+      </IonItem>
+      <IonItem>
+        <IonNote slot="start" color="primary">Grado</IonNote>
+        <IonLabel>{stringManager.titleCase(loc.properties.grado)}</IonLabel>
+      </IonItem>
+      <IonItem>
+        <IonNote slot="start" color="primary">Tipo serv.</IonNote>
+        <IonLabel>{stringManager.titleCase(loc.properties.tipo_servi)}</IonLabel>
+      </IonItem>
+      <IonItem>
+        <IonNote slot="start" color="primary">Tipologia</IonNote>
+        <IonLabel>{stringManager.titleCase(loc.properties.tipologia)}</IonLabel>
       </IonItem>
       <IonItem>
         <IonNote slot="start" color="primary">Quartiere</IonNote>
