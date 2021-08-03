@@ -56,7 +56,9 @@ export class Map extends Component {
   async componentDidMount() {
 
     const res = await Geolocation.getCurrentPosition()
-    this.center=[res.coords.latitude, res.coords.longitude]
+    //TODO: if no position permission crash flyto btn
+    //if(res.coods.latitude)
+      this.center=[res.coords.latitude, res.coords.longitude]
     this.GetScuole()
     if (this.state.mapContainer) return
 
