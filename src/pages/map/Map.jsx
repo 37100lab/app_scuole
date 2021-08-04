@@ -108,7 +108,6 @@ export class Map extends Component {
     const { zoom, locationClicked, showModal } = this.props.map
 
     const centerPosition = () => {
-      console.log(this.center)
       if(this.center)
         this.state.mapCont.flyTo(this.center)
       if(typeof this.center==='undefined')
