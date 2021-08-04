@@ -13,6 +13,10 @@ import {
   IonFab,
   IonFabButton,
   IonIcon,
+  IonLabel,
+  IonToast,
+  IonList,
+  IonItem,
 } from '@ionic/react'
 
 import stringManager from '../../utility/stringManager'
@@ -51,15 +55,21 @@ export class Map extends Component {
     circoscrizioni: {},
     center:[45.438351, 10.99171],
     mapCont:null,
+    gpsError:false,
   }
 
+  componentDidCatch() {
+    this.setState({gpsError:true})
+  }
   async componentDidMount() {
-
+    try{
     const res = await Geolocation.getCurrentPosition()
-    //TODO: if no position permission crash flyto btn
-    //if(res.coods.latitude)
+   
       this.center=[res.coords.latitude, res.coords.longitude]
-    this.GetScuole()
+    } catch (e) {
+      this.setState({ gpsError: true })
+  }
+      this.GetScuole()
     if (this.state.mapContainer) return
 
     setTimeout(() => {
@@ -97,10 +107,36 @@ export class Map extends Component {
   render() {
     const { zoom, locationClicked, showModal } = this.props.map
 
-  const centerPosition = () => {
-    this.state.mapCont.flyTo(this.center)
-  }
+    const centerPosition = () => {
+      console.log(this.center)
+      if(this.center)
+        this.state.mapCont.flyTo(this.center)
+      if(typeof this.center==='undefined')
+        this.setState({ gpsError: true })
+    }
+    if(this.state.gpsError)
+      return (
+        <IonPage>
+          <IonHeader>
+            <IonToolbar>
+            <IonTitle>Farmacie a Verona</IonTitle>
+            </IonToolbar>
+            </IonHeader>
+            <IonContent>
 
+            <IonList>
+            <IonItem>
+            <IonLabel>Errore nell'avvio dell'applicazione</IonLabel>
+            </IonItem>
+            <IonItem>
+            <IonLabel>Assicurarsi che il Geolocalizzazione 
+            e la connessione internet siano attive</IonLabel>
+            </IonItem>
+            </IonList>
+          </IonContent>
+        </IonPage>
+      )
+    else
     return (
       <IonPage>
         <IonHeader>
@@ -172,6 +208,23 @@ export class Map extends Component {
             style={{maxWidth: "500px", margin: "auto"}}
             />
         </IonFooter>
+        <IonToast
+        isOpen={this.state.gpsError}
+        color="danger"
+        onDidDismiss={() => 
+          this.setState({ gpsError: false })}
+        message="Problema di caricamento mappa. Il GPS è attivo?"
+        buttons={[
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              this.setState({ gpsError: false })
+            }
+          }
+        ]}
+      />
+
       </IonPage>
     )
   }
