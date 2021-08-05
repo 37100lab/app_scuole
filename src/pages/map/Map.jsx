@@ -122,13 +122,12 @@ export class Map extends Component {
             </IonToolbar>
             </IonHeader>
             <IonContent>
-
             <IonList>
             <IonItem>
-            <IonLabel>Errore nell'avvio dell'applicazione</IonLabel>
+            <IonLabel className="ion-text-wrap">Errore nell'avvio dell'applicazione</IonLabel>
             </IonItem>
             <IonItem>
-            <IonLabel>Assicurarsi che il Geolocalizzazione 
+            <IonLabel className="ion-text-wrap">Assicurarsi che il Geolocalizzazione 
             e la connessione internet siano attive</IonLabel>
             </IonItem>
             </IonList>
