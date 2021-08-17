@@ -1,5 +1,6 @@
 {
   "name": "geoapp-front",
+  "homepage": "https://37100lab.github.io/app_scuole",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "ionicons": "^5.5.1",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
+    "push-dir": "^0.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.0",
@@ -38,7 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "push-dir --dir=build --branch=gh-pages --cleanup"
   },
   "eslintConfig": {
     "extends": [
