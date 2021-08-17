@@ -44,8 +44,7 @@ import quartieri from '../../data/quartieri.json'
 import sponsor from '../../assets/img/sponsor.jpg'
 import { locateSharp } from 'ionicons/icons'
 
-const url='http://3.142.202.105:7484'
-
+const url='http://ec2-3-142-202-105.us-east-2.compute.amazonaws.com:8080/geoserver/geoapp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geoapp:scuole&outputFormat=application/json'
 export class Map extends Component {
   
   state = {
@@ -78,7 +77,7 @@ export class Map extends Component {
   }
 
   GetScuole(){
-    fetch(url+'/get/scuole', {
+      fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
