@@ -45,6 +45,7 @@ import sponsor from '../../assets/img/sponsor.jpg'
 import { locateSharp } from 'ionicons/icons'
 
 const url='http://ec2-3-142-202-105.us-east-2.compute.amazonaws.com:8080/geoserver/geoapp/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=geoapp:scuole&outputFormat=application/json'
+
 export class Map extends Component {
   
   state = {
@@ -57,18 +58,17 @@ export class Map extends Component {
     gpsError:false,
   }
 
-  componentDidCatch() {
-    this.setState({gpsError:true})
-  }
   async componentDidMount() {
-    try{
+    try {
+    
     const res = await Geolocation.getCurrentPosition()
-   
-      this.center=[res.coords.latitude, res.coords.longitude]
+    this.center=[res.coords.latitude, res.coords.longitude]
+
     } catch (e) {
-      this.setState({ gpsError: true })
-  }
-      this.GetScuole()
+        this.setState({ gpsError: true })
+    }
+
+    this.GetScuole()
     if (this.state.mapContainer) return
 
     setTimeout(() => {
@@ -77,7 +77,7 @@ export class Map extends Component {
   }
 
   GetScuole(){
-      fetch(url, {
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -94,7 +94,6 @@ export class Map extends Component {
   }
 
   //ON EACH METHODS
-
   OnEachQuartiere = (quartiere, layer) =>{
     layer.bindPopup(stringManager.titleCase(quartiere.properties.quartiere))
   }
@@ -103,10 +102,15 @@ export class Map extends Component {
     layer.bindPopup(stringManager.titleCase(paese.properties.circoscriz))
   }
 
+  componentDidCatch() {
+    this.setState({gpsError:true})
+  }
+
   render() {
     const { zoom, locationClicked, showModal } = this.props.map
 
     const centerPosition = () => {
+      console.log(this.center)
       if(this.center)
         this.state.mapCont.flyTo(this.center)
       if(typeof this.center==='undefined')
@@ -117,7 +121,7 @@ export class Map extends Component {
         <IonPage>
           <IonHeader>
             <IonToolbar>
-            <IonTitle>Farmacie a Verona</IonTitle>
+            <IonTitle>Scuole a Verona</IonTitle>
             </IonToolbar>
             </IonHeader>
             <IonContent>
@@ -143,15 +147,13 @@ export class Map extends Component {
         </IonHeader>
 
         <IonContent id="content" fullscreen>
-
-
           <IonModal isOpen={showModal} backdropDismiss={false}>   
             { locationClicked && ( <LocationModal loc={locationClicked}/> )}
             <IonButton onClick={() => this.props.dismissLocationModal()}>
               Chiudi
             </IonButton>
           </IonModal>
-
+          
           {this.state.mapContainer && (
             <MapContainer
               className={classes.mapContainer}
@@ -202,7 +204,7 @@ export class Map extends Component {
 
         <IonFooter>
             <IonImg src={sponsor}
-            style={{maxWidth: "500px", margin: "auto"}}
+            style={{maxWidth: "500px" , margin: "auto"}}
             />
         </IonFooter>
         <IonToast
@@ -221,8 +223,8 @@ export class Map extends Component {
           }
         ]}
       />
-
-      </IonPage>
+    </IonPage>
+    
     )
   }
 }
