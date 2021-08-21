@@ -1,6 +1,6 @@
 {
-  "appId": "com.geoapp.front",
-  "appName": "geoapp-front",
+  "appId": "com.geo.scuole",
+  "appName": "geo-scuole",
   "webDir": "build",
   "bundledWebRuntime": false
 }
