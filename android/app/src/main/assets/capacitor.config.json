@@ -1,0 +1,6 @@
+{
+	"appId": "com.geo.scuole",
+	"appName": "geo-scuole",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
