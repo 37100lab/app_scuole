@@ -1,6 +1,5 @@
 {
   "name": "geo-scuole",
-  "homepage": "https://ahmedaidev.github.io/geo-scuole",
   "version": "1.0.0",
   "dependencies": {
     "@capacitor/android": "3.2.0",

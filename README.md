@@ -1,14 +1,22 @@
 # Scuole di Verona
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c191dd69-876d-44f8-9e43-af9f76bbb3b0/deploy-status)](https://app.netlify.com/sites/geo-scuole/deploys)
+
 # Il progetto
+
 La seguente applicazione mobile nasce dall'esigenza di trovare in tempo reale ed istantaneamente più vicino alla nostra posizione attuale. L'obiettivo è quello di fornire uno strumento facile ed efficace, utilizzabile dai cittadini, per ottenere un servizio veloce ed affidabile nella consultazione di archivi comunali per un servizio informativo migliore.
+
 # Come utilizzare l'applicazione
+
 Per utilizzare l'App è sufficiente installarla sul proprio dispositivo e selezionare i punti interattivi sulla mappa nella provincia di verona.
+
 # credits
+
 Lavoro sviluppato da Innovation Lab in collaborazione con Comune di Verona.
 ![Sponsor](https://user-images.githubusercontent.com/87977853/127863204-46d984eb-4025-479b-b6e6-4bd8f8e38c5c.jpeg)
 
 # Description of the project (ENG)
+
 This app displays the schools of Verona.
 By clicking on each school will be possible to view its information
 App developed by [37100LAB](https://37100lab.comune.verona.it).
